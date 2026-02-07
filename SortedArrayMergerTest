@@ -1,0 +1,58 @@
+package com.example.arrays;
+
+import org.junit.jupiter.api.Test;
+import static org.junit.jupiter.api.Assertions.*;
+
+/*
+ * This class tests the mergeSorted method.
+ * We use JUnit to check if the output is correct.
+ */
+public class SortedArrayMergerTest {
+
+    @Test
+    void testNormalMerge() {
+        int[] a = {1, 3, 5};
+        int[] b = {2, 4, 6};
+
+        int[] result = SortedArrayMerger.mergeSorted(a, b);
+
+        // Check if the merged array is sorted correctly
+        assertArrayEquals(new int[]{1, 2, 3, 4, 5, 6}, result);
+    }
+
+    @Test
+    void testWithDuplicates() {
+        int[] a = {1, 2, 2};
+        int[] b = {2, 3};
+
+        int[] result = SortedArrayMerger.mergeSorted(a, b);
+
+        assertArrayEquals(new int[]{1, 2, 2, 2, 3}, result);
+    }
+
+    @Test
+    void testFirstArrayEmpty() {
+        int[] a = {};
+        int[] b = {1, 2, 3};
+
+        int[] result = SortedArrayMerger.mergeSorted(a, b);
+
+        assertArrayEquals(new int[]{1, 2, 3}, result);
+    }
+
+    @Test
+    void testSecondArrayEmpty() {
+        int[] a = {1, 2, 3};
+        int[] b = {};
+
+        int[] result = SortedArrayMerger.mergeSorted(a, b);
+
+        assertArrayEquals(new int[]{1, 2, 3}, result);
+    }
+
+    @Test
+    void testBothArraysEmpty() {
+        int[] result = SortedArrayMerger.mergeSorted(new int[]{}, new int[]{});
+        assertArrayEquals(new int[]{}, result);
+    }
+}
